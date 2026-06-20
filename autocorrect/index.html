@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A fast, private autocorrect workspace for cleaner everyday writing."
+    />
+    <title>TypeRight | Autocorrect Workspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="#" aria-label="TypeRight home">
+          <span class="brand-mark">T</span>
+          <span>TypeRight</span>
+        </a>
+        <nav class="header-actions" aria-label="Page actions">
+          <span class="privacy-pill"><span class="status-dot"></span> Private by design</span>
+          <button class="icon-button" id="themeButton" type="button" aria-label="Toggle color theme">
+            <span aria-hidden="true">☼</span>
+          </button>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div>
+            <p class="eyebrow">Your writing, refined</p>
+            <h1>Write freely.<br /><span>We’ll catch the rest.</span></h1>
+          </div>
+          <p class="hero-copy">
+            Clean up typos, punctuation, and spacing in seconds. Your words stay in your browser.
+          </p>
+        </section>
+
+        <section class="workspace" aria-label="Autocorrect workspace">
+          <div class="workspace-toolbar">
+            <div class="mode-group">
+              <label for="modeSelect">Correction mode</label>
+              <select id="modeSelect">
+                <option value="balanced">Balanced</option>
+                <option value="spelling">Spelling only</option>
+                <option value="polished">Polished</option>
+              </select>
+            </div>
+            <div class="toolbar-actions">
+              <button class="text-button" id="sampleButton" type="button">Try sample</button>
+              <button class="text-button" id="pasteButton" type="button">Paste text</button>
+              <button class="text-button danger" id="clearButton" type="button">Clear</button>
+            </div>
+          </div>
+
+          <div class="editor-grid">
+            <article class="editor-panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="panel-kicker">Original text</p>
+                  <h2>Start writing</h2>
+                </div>
+                <span class="counter" id="inputCounter">0 words</span>
+              </div>
+              <textarea
+                id="inputText"
+                spellcheck="false"
+                placeholder="Type or paste your text here..."
+                aria-label="Original text"
+              ></textarea>
+              <div class="panel-footer">
+                <span id="charCounter">0 / 4,000 characters</span>
+                <button class="primary-button" id="correctButton" type="button">
+                  <span>Correct text</span>
+                  <span aria-hidden="true">→</span>
+                </button>
+              </div>
+            </article>
+
+            <article class="editor-panel result-panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="panel-kicker">Refined text</p>
+                  <h2>Your result</h2>
+                </div>
+                <span class="quality-score" id="qualityScore">Ready</span>
+              </div>
+              <div class="result-content empty" id="resultContent" aria-live="polite">
+                <div class="empty-state">
+                  <span class="empty-icon" aria-hidden="true">✦</span>
+                  <p>Your polished text will appear here.</p>
+                </div>
+              </div>
+              <div class="panel-footer result-footer">
+                <button class="secondary-button" id="undoButton" type="button" disabled>Undo</button>
+                <div>
+                  <button class="secondary-button" id="downloadButton" type="button" disabled>Download</button>
+                  <button class="primary-button compact" id="copyButton" type="button" disabled>Copy result</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="insights-grid">
+          <article class="review-card">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Review changes</p>
+                <h2>Small fixes, big difference.</h2>
+              </div>
+              <button class="text-button" id="acceptAllButton" type="button" disabled>Accept all</button>
+            </div>
+            <div class="review-list" id="reviewList">
+              <p class="muted">Corrections will appear here after you check your text.</p>
+            </div>
+          </article>
+
+          <aside class="stats-card">
+            <p class="eyebrow">Writing snapshot</p>
+            <div class="stat-main">
+              <strong id="accuracyValue">—</strong>
+              <span>accuracy score</span>
+            </div>
+            <div class="stats-list">
+              <div><span>Corrections</span><strong id="correctionCount">0</strong></div>
+              <div><span>Words checked</span><strong id="checkedCount">0</strong></div>
+              <div><span>Reading time</span><strong id="readingTime">0 min</strong></div>
+            </div>
+          </aside>
+        </section>
+
+        <section class="history-section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Recent activity</p>
+              <h2>Your last corrections</h2>
+            </div>
+            <button class="text-button danger" id="clearHistoryButton" type="button">Clear history</button>
+          </div>
+          <div class="history-list" id="historyList">
+            <p class="muted">Your recent corrections will stay here on this device.</p>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <span>TypeRight</span>
+        <span>Local-first writing assistance</span>
+      </footer>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
